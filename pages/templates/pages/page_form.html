@@ -1,0 +1,12 @@
+{% extends 'tienda/base.html' %}
+{{ form.media }}
+
+{% block contenido %}
+    <h2>{% if object %}Editar{% else %}Crear{% endif %} Blog</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Guardar</button>
+        <a href="{% url 'pages_list' %}" class="btn" style="background-color: gray;">Cancelar</a>
+    </form>
+{% endblock %}

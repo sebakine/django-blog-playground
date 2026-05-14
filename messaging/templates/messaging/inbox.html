@@ -1,0 +1,22 @@
+{% extends 'tienda/base.html' %}
+
+{% block contenido %}
+    <h2>Bandeja de Entrada (Recibidos)</h2>
+    <div style="margin-bottom: 20px;">
+        <a href="{% url 'send_message' %}" class="btn">Enviar Nuevo Mensaje</a>
+        <a href="{% url 'sent_messages' %}" class="btn" style="background-color: #6c757d;">Ver Enviados</a>
+    </div>
+
+    {% if messages %}
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            {% for message in messages %}
+                <div style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; background-color: #fafafa;">
+                    <p><strong>De:</strong> {{ message.sender.username }} | <strong>Fecha:</strong> {{ message.date_sent|date:"d M Y H:i" }}</p>
+                    <p>{{ message.content }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert">No tienes mensajes.</div>
+    {% endif %}
+{% endblock %}

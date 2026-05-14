@@ -47,3 +47,6 @@ def buscar_producto(request):
         resultados = []
     
     return render(request, 'tienda/buscar.html', {'resultados': resultados, 'busqueda': busqueda})
+
+def about(request):
+    return render(request, 'tienda/about.html')

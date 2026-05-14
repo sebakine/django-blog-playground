@@ -1,0 +1,23 @@
+{% extends 'tienda/base.html' %}
+
+{% block contenido %}
+    <h2>{{ page.title }}</h2>
+    <h4>{{ page.subtitle }}</h4>
+    <p><i>Publicado por {{ page.author.username }} el {{ page.date }}</i></p>
+    
+    {% if page.image %}
+        <img src="{{ page.image.url }}" alt="{{ page.title }}">
+    {% endif %}
+    
+    <div style="margin-top: 20px;">
+        {{ page.body|safe }}
+    </div>
+
+    <br><br>
+    <a href="{% url 'pages_list' %}" class="btn" style="background-color: gray;">Volver a los blogs</a>
+    
+    {% if user == page.author %}
+        <a href="{% url 'pages_update' page.id %}" class="btn" style="background-color: #ffc107; color: black;">Editar</a>
+        <a href="{% url 'pages_delete' page.id %}" class="btn" style="background-color: #dc3545;">Borrar</a>
+    {% endif %}
+{% endblock %}

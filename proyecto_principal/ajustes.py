@@ -14,6 +14,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tienda.configuracion_app.TiendaConfig',
+    'pages',
+    'accounts',
+    'messaging',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -32,7 +36,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'tienda' / 'plantillas'],
-        'APP_DIRS': False,
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -60,6 +64,9 @@ USE_TZ = True
 
 STATIC_URL = '/estaticos/'
 STATICFILES_DIRS = [BASE_DIR / "estaticos"]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

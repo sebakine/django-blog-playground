@@ -22,3 +22,7 @@ ehthumbs.db
 # Configuraciones de editores de código (VS Code, PyCharm)
 .vscode/
 .idea/
+
+# Archivos multimedia (subidos por usuarios)
+media/
+

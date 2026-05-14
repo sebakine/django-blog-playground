@@ -1,0 +1,24 @@
+{% extends 'tienda/base.html' %}
+
+{% block contenido %}
+    <h2>Mi Perfil</h2>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <div>
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" alt="Avatar" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;">
+            {% else %}
+                <div style="width: 150px; height: 150px; border-radius: 50%; background: #ccc; display: flex; justify-content: center; align-items: center;">Sin Avatar</div>
+            {% endif %}
+        </div>
+        <div>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Nombre:</strong> {{ user.first_name }}</p>
+            <p><strong>Apellido:</strong> {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Biografía:</strong> {{ user.profile.biografia|default:"No hay biografía" }}</p>
+        </div>
+    </div>
+    <br>
+    <a href="{% url 'edit_profile' %}" class="btn">Editar Perfil</a>
+    <a href="{% url 'edit_password' %}" class="btn" style="background-color: #ffc107; color: black;">Cambiar Contraseña</a>
+{% endblock %}

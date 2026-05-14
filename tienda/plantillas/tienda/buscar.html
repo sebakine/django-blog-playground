@@ -1,24 +1,31 @@
 {% extends 'tienda/base.html' %}
 
 {% block contenido %}
-    <h1>Buscar un Producto</h1>
+    <h2>Buscar un Producto</h2>
     
-    <form method="GET" action="{% url 'buscar_producto' %}">
-        <label>Nombre del producto a buscar:</label>
-        <input type="text" name="q" value="{{ busqueda }}">
-        <button type="submit">Buscar</button>
-    </form>
+    <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px;">
+        <form method="GET" action="{% url 'buscar_producto' %}">
+            <p><strong>Nombre del producto a buscar:</strong></p>
+            <input type="text" name="q" value="{{ busqueda }}" placeholder="Ej: Laptop...">
+            <br><br>
+            <button type="submit" class="btn">Buscar</button>
+            <a href="{% url 'lista_productos' %}" class="btn" style="background-color: #6c757d;">Ver todos</a>
+        </form>
+    </div>
 
-    <hr>
+    <br>
 
     {% if busqueda %}
-        <h2>Resultados para "{{ busqueda }}":</h2>
-        <ul>
+        <h3>Resultados para "{{ busqueda }}":</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 15px;">
         {% for producto in resultados %}
-            <li>{{ producto.nombre }} - Precio: ${{ producto.precio }}</li>
+            <div style="border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: #fff; width: 200px;">
+                <h4 style="margin: 0;">{{ producto.nombre }}</h4>
+                <p style="color: #28a745; font-weight: bold;">${{ producto.precio }}</p>
+            </div>
         {% empty %}
-            <li>No se encontró ningún producto con ese nombre.</li>
+            <div class="alert" style="background-color: #f8d7da; color: #721c24;">No se encontró ningún producto con ese nombre.</div>
         {% endfor %}
-        </ul>
+        </div>
     {% endif %}
 {% endblock %}

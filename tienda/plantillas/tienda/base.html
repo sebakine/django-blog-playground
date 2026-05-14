@@ -3,24 +3,47 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Proyecto de Tienda</title>
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Playground Final Project</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; margin: 0; padding: 0; }
+        header { background-color: #333; color: white; padding: 10px 0; }
+        nav { display: flex; justify-content: center; gap: 20px; align-items: center; }
+        nav a { color: white; text-decoration: none; font-weight: bold; }
+        nav a:hover { text-decoration: underline; }
+        .container { max-width: 800px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .btn { display: inline-block; padding: 10px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; border: none; cursor: pointer; }
+        .btn:hover { background: #0056b3; }
+        .alert { padding: 10px; background: #d4edda; color: #155724; border-radius: 5px; margin-bottom: 15px; }
+        img { max-width: 100%; height: auto; border-radius: 8px; }
+        form p { margin-bottom: 15px; }
+        input[type="text"], input[type="email"], input[type="password"], textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+    </style>
 </head>
 <body>
-
-    <nav>
-        <a href="{% url 'index' %}">Inicio</a> |
-        <a href="{% url 'lista_productos' %}">Ver Productos</a> |
-        <a href="{% url 'agregar_producto' %}">Agregar Producto</a> |
-        <a href="{% url 'agregar_categoria' %}">Agregar Categoría</a> |
-        <a href="{% url 'agregar_proveedor' %}">Agregar Proveedor</a> |
-        <a href="{% url 'buscar_producto' %}">Buscar Producto</a>
-    </nav>
-
-    <div class="contenedor">
+    <header>
+        <nav>
+            <a href="{% url 'index' %}">Inicio</a>
+            <a href="{% url 'about' %}">Acerca de mí</a>
+            <a href="{% url 'pages_list' %}">Blogs</a>
+            <a href="{% url 'lista_productos' %}">Productos</a>
+            <a href="{% url 'agregar_producto' %}">Nuevo Producto</a>
+            <a href="{% url 'agregar_categoria' %}">Nueva Categoría</a>
+            <a href="{% url 'agregar_proveedor' %}">Nuevo Proveedor</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}">Mi Perfil ({{ user.username }})</a>
+                <a href="{% url 'inbox' %}">Mensajes</a>
+                <a href="{% url 'logout' %}">Cerrar Sesión</a>
+            {% else %}
+                <a href="{% url 'login' %}">Ingresar</a>
+                <a href="{% url 'signup' %}">Registrarse</a>
+            {% endif %}
+        </nav>
+    </header>
+    
+    <div class="container">
         {% block contenido %}
         {% endblock %}
     </div>
-
 </body>
 </html>

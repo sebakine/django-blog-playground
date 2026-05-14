@@ -1,6 +1,23 @@
 {% extends 'tienda/base.html' %}
 
 {% block contenido %}
-    <h1>Bienvenido a la Tienda blog de Sebastian Muñoz</h1>
-    <p>Este es el inicio de mi proyecto</p>
+    <div style="text-align: center; padding: 40px 0;">
+        <h1 style="color: #333; font-size: 2.5em;">Bienvenido al Blog de Sebastian Muñoz</h1>
+        <p style="font-size: 1.2em; color: #666;">Proyecto Final - Tercera Entrega Python Coderhouse</p>
+        
+        <div style="margin-top: 30px; display: flex; justify-content: center; gap: 20px;">
+            <a href="{% url 'pages_list' %}" class="btn" style="padding: 15px 30px; font-size: 1.1em;">Explorar Blogs</a>
+            <a href="{% url 'about' %}" class="btn" style="padding: 15px 30px; font-size: 1.1em; background-color: #6c757d;">Sobre Mí</a>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px;">
+        <h3>¿Qué puedes hacer aquí?</h3>
+        <ul>
+            <li><strong>Leer Blogs:</strong> Explora artículos con texto enriquecido e imágenes.</li>
+            <li><strong>Tu Perfil:</strong> Regístrate para tener tu propio perfil con avatar y biografía.</li>
+            <li><strong>Mensajería:</strong> Envía y recibe mensajes directos con otros usuarios.</li>
+            <li><strong>Administración:</strong> Gestiona productos, categorías y proveedores (App Tienda).</li>
+        </ul>
+    </div>
 {% endblock %}
