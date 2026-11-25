@@ -2,9 +2,18 @@ from pathlib import Path
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-dummy-key'
-DEBUG = True
-ALLOWED_HOSTS = []
+# Configuración sensible desde variables de entorno (nunca en el código).
+# DJANGO_SECRET_KEY: obligatoria en producción. En desarrollo, si falta, se genera
+# una clave aleatoria en cada arranque (las sesiones se invalidan al reiniciar).
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() in ('1', 'true', 'yes')
+ALLOWED_HOSTS = [h for h in os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',') if h]
+
+if not SECRET_KEY:
+    if not DEBUG:
+        raise RuntimeError('DJANGO_SECRET_KEY es obligatoria cuando DJANGO_DEBUG=False')
+    from django.core.management.utils import get_random_secret_key
+    SECRET_KEY = get_random_secret_key()
 
 INSTALLED_APPS = [
     'django.contrib.admin',

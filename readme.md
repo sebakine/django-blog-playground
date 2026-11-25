@@ -33,5 +33,13 @@ Este es el proyecto final para el curso de Python en CoderHouse (Tercera Entrega
 3. Ejecutar migraciones: `python gestionar.py migrate`.
 4. Iniciar servidor: `python gestionar.py runserver`.
 
+### Variables de entorno
+
+| Variable | Uso | Por defecto |
+| --- | --- | --- |
+| `DJANGO_SECRET_KEY` | Clave criptográfica de Django. Obligatoria si `DJANGO_DEBUG=False`. | En desarrollo se genera una aleatoria en cada arranque |
+| `DJANGO_DEBUG` | Modo depuración | `True` |
+| `DJANGO_ALLOWED_HOSTS` | Hosts permitidos, separados por coma | vacío |
+
 ---
 *Sebastian Muñoz - CoderHouse 2026*
